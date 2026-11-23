@@ -9,17 +9,17 @@ using GraveyardOrbit;
 using HarmonyLib;
 using UnityEngine;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // Shared library plugin: mod-folder discovery, the generic content/<type>/*.json
     // catalog injectors, the load report and the Ctrl+F6 hot-reload. Content plugins declare
-    // [BepInDependency(GraveyardOrbitModdingFramework.Plugin.PluginGuid)] so BepInEx loads
+    // [BepInDependency(GraveFramework.Plugin.PluginGuid)] so BepInEx loads
     // this one first.
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
     public class Plugin : BaseUnityPlugin
     {
-        public const string PluginGuid = "com.luminaex.graveyardorbitframework";
-        public const string PluginName = "GraveyardOrbitModdingFramework";
+        public const string PluginGuid = "com.luminaex.graveframework";
+        public const string PluginName = "GraveFramework";
         public const string PluginVersion = "1.0.0";
 
         // Hot-reload hotkey — re-scans every mod's content folders and re-applies without

@@ -8,7 +8,7 @@ using HarmonyLib;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // Injects wholly new, fully-registered contracts into the real player-visible Contracts
     // list (ModeSelectController reads StructureCatalog.I.Contracts, which resolves to

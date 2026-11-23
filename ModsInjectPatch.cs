@@ -5,7 +5,7 @@ using GraveyardOrbit;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // Injects community-authored nodes into the "Mods" research tree right after
     // ModCatalog.EnsureLoaded() parses the official Resources/progression/mods TextAsset.

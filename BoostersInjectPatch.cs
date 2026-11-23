@@ -5,7 +5,7 @@ using GraveyardOrbit;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // Injects community-authored Boosters (mid-run stat buffs) right after
     // BoosterCatalog.EnsureLoaded() parses the official Resources/boost_cards TextAsset.

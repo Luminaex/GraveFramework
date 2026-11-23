@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json.Linq;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // Shared plumbing for every "scan each mod's content/<type> folder of *.json files and
     // inject defs into a live catalog" patch (Structures, Mods, Boosters, Anomalies, Quotas

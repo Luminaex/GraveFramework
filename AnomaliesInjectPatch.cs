@@ -5,7 +5,7 @@ using GraveyardOrbit;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // Anomalies ("artifacts") are the one system where new content needs an extra patch
     // beyond data injection: effect dispatch in MiningSortie.FireAnomaly(string id) is a

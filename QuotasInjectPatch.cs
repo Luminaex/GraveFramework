@@ -4,7 +4,7 @@ using GraveyardOrbit;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // The simplest injection in the whole project: QuotaCatalog.All is a plain public
     // static List<QuotaDef> (not gated by EnsureLoaded, not TextAsset-backed) — no Harmony

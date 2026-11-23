@@ -1,4 +1,4 @@
-# GraveyardOrbitModdingFramework
+# GraveFramework
 
 A shared [BepInEx](https://github.com/BepInEx/BepInEx)/[Harmony](https://github.com/pardeike/Harmony)
 plugin for [Graveyard Orbit](https://store.steampowered.com/app/4654120) (dev AnchorheadGames)
@@ -27,15 +27,15 @@ This is **not a gameplay mod on its own**. It's infrastructure other mods depend
 
 ## Installing (for players)
 
-Drop `GraveyardOrbitModdingFramework.dll` into `BepInEx/plugins/GraveyardOrbitModdingFramework/`
-alongside any mod that depends on it (e.g. GraveBuilder). BepInEx loads it first automatically
-via `[BepInDependency]`.
+Drop `GraveFramework.dll` into `BepInEx/plugins/GraveFramework/` alongside any mod that
+depends on it (e.g. GraveBuilder). BepInEx loads it first automatically via
+`[BepInDependency]`.
 
 ## Building from source
 
 Requires the .NET SDK and a local install of Graveyard Orbit (for its `Assembly-CSharp.dll`
 and BepInEx's own core DLLs, referenced via `HintPath`). Edit the `$(GameDir)` property at the
-top of `GraveyardOrbitModdingFramework.csproj` to point at your own install, e.g.:
+top of `GraveFramework.csproj` to point at your own install, e.g.:
 
 ```xml
 <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Graveyard Orbit</GameDir>

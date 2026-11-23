@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // One content mod found under BepInEx/plugins/. RootDir is the mod's own folder; its
     // content lives in RootDir/content/<type>/*.json.

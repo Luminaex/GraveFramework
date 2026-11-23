@@ -2,12 +2,12 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 
-namespace GraveyardOrbitModdingFramework
+namespace GraveFramework
 {
     // A content mod's self-description, read from <modFolder>/manifest.json. Same shape as
     // a Thunderstore package manifest:
     //   {"name":"MyMod","version_number":"1.0.0","website_url":"","description":"...",
-    //    "dependencies":["Luminaex-GraveyardOrbitModdingFramework-1.0.0"]}
+    //    "dependencies":["Luminaex-GraveFramework-1.0.0"]}
     // Every field is optional here. There is no id or author field: the mod's id is always
     // its folder name (see ModDiscovery), and Thunderstore keeps the author/namespace in the
     // package's identity, not in the manifest. Dependencies are stored as given, never
