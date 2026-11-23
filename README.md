@@ -65,6 +65,16 @@ contracts/structures). A `manifest.json` identifying your mod is optional but re
 }
 ```
 
+## Examples
+
+The [`examples/`](examples/) folder is a separate, optional companion project
+(`GraveFrameworkExamples.dll`) that shows every technique this framework enables, working end
+to end: zero-code content folders (a research-tree node, a booster, an anomaly, a quota) and
+code-based techniques the content folders don't cover (a new campaign chapter, a new ship
+part, a new weapon hit-mechanic, mod-supported localisation). It's reference material for mod
+developers to read and build themselves. It isn't something players install, and it's never
+included in GraveFramework's own release zip. See [`examples/README.md`](examples/README.md).
+
 ## Status
 
 Early v1. Built and verified live in-game against the running game (all five catalog

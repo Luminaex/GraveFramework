@@ -1,0 +1,63 @@
+{
+  "id": "LASER_SNIPER",
+  "visual_base": "LASER_BEAM",
+  "part": {
+    "name": "Longshot",
+    "abbr": "LS",
+    "desc": "Extreme range, extreme damage, extreme patience. One shot at a time, from very far away.",
+    "color": "#33FFB8",
+    "cost": 650,
+    "power_cost": 2,
+    "power_output": 0,
+    "mass": 2,
+    "hp": 2,
+    "energy": 6,
+    "stats": {
+      "damage": 14.0,
+      "range": 420.0,
+      "interval": 1.6,
+      "crit_chance": 0.1,
+      "crit_multiplier": 2.5
+    }
+  },
+  "upgrade": {
+    "label": "Longshot",
+    "family": "laser",
+    "role": "variant",
+    "parent": "LASER",
+    "mark": 1,
+    "unlock_gate": "parent_lanes_maxed",
+    "unlock_cost": 250,
+    "desc": "Extreme range, extreme damage, extreme patience. One shot at a time, from very far away.",
+    "lanes": {
+      "damage": {
+        "label": "Damage",
+        "stat": "damage",
+        "per_node": 4,
+        "nodes": 5,
+        "costs": [20, 30, 45, 65, 90],
+        "desc": "Heavier focusing lens. +4 damage per node."
+      },
+      "range": {
+        "label": "Range",
+        "stat": "range",
+        "per_node": 60,
+        "nodes": 5,
+        "costs": [20, 30, 45, 65, 90],
+        "gated": true,
+        "gate_cost_research": 1,
+        "desc": "Longer optical path. +60 reach per node."
+      },
+      "interval": {
+        "label": "Fire Rate",
+        "stat": "interval",
+        "per_node": -0.1,
+        "nodes": 5,
+        "costs": [20, 30, 45, 65, 90],
+        "gated": true,
+        "gate_cost_research": 1,
+        "desc": "Faster capacitor recharge. Shorter gap between shots per node."
+      }
+    }
+  }
+}

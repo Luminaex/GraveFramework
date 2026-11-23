@@ -1,0 +1,13 @@
+{
+  "id": "shockwave",
+  "name": "Shockwave",
+  "arm": "laser",
+  "kind": "hit",
+  "blurb": "Every hit sends out a small damaging shockwave around the impact point.",
+  "col": 2,
+  "row": 1,
+  "fits": ["LASER"],
+  "parents": ["root"],
+  "price": {"tok_gold": 3},
+  "params": {"radius": 2.0, "dmg_frac": 0.5}
+}

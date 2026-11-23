@@ -1,0 +1,45 @@
+{
+  "structure": {
+    "id": "chapter_6_wreck",
+    "display_name": "The Last Signal",
+    "description": "A sixth jump point, picked up on an old frequency nobody was supposed to be listening to.",
+    "cells_file": "chapter6_cells.json",
+    "starting_money": 600,
+    "sealed_layers": true,
+    "bands": [{"layer": 1, "hp_sealed": 75}],
+    "glyph_count": 0,
+    "green_count": -1
+  },
+  "hub": {
+    "point": [0.95, 0.75],
+    "radius": 70
+  },
+  "story": {
+    "id": "chapter6_mod",
+    "screens": [
+      {
+        "tag": "SIGNAL · UNLISTED FREQUENCY",
+        "ink": "#edf2ed",
+        "art": "scan",
+        "next": "NEXT",
+        "wreck": "chapter_6_wreck",
+        "lines": [
+          {"kind": "sys", "parts": [{"text": "SIGNAL ACQUIRED · SOURCE UNKNOWN"}]},
+          {"kind": "say", "parts": [{"text": "That's new. This frequency isn't on any Orbitron chart."}]},
+          {"kind": "say", "parts": [{"text": "Somebody's been out here a long time, and they left the lights on."}]},
+          {"kind": "big", "parts": [{"text": "Let's go see what's still listening."}]}
+        ]
+      },
+      {
+        "tag": "JUMP POINT 06",
+        "ink": "#ff9926",
+        "art": "press",
+        "next": "NEXT",
+        "lines": [
+          {"kind": "sys", "parts": [{"text": "TRANSMISSION LOGGED"}]},
+          {"kind": "say", "parts": [{"text": "Whatever this place used to be, it's ours to clean up now."}]}
+        ]
+      }
+    ]
+  }
+}

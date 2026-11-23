@@ -1,0 +1,11 @@
+{
+  "code": "pirate",
+  "name": "Pirate",
+  "english": "Pirate (fan translation)",
+  "strings": {
+    "station.refinery.expand_title": "EXPAND THE RIGGIN'",
+    "data.buildings.name_extractor": "PLUNDERIN' DECK",
+    "menu.mode.list_all": "ALL PLUNDER",
+    "station.refinery.row_expand": "Expand the riggin'"
+  }
+}

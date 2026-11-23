@@ -1,0 +1,13 @@
+{
+  "id": "l_prism_shot",
+  "name": "Prism Shot",
+  "arm": "laser",
+  "kind": "kill",
+  "blurb": "Tiles this laser destroys drop 50% more ore.",
+  "col": 0,
+  "row": 1,
+  "fits": ["LASER"],
+  "parents": ["root"],
+  "price": {"tok_gold": 3},
+  "params": {"mult": 1.5}
+}

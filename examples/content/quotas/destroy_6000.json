@@ -1,0 +1,7 @@
+{
+  "id": "destroy_6000",
+  "goal": "DestroyTiles",
+  "target": 6000,
+  "reward": 400,
+  "text": "Destroy 6,000 tiles"
+}

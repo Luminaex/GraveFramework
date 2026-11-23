@@ -1,0 +1,9 @@
+{
+  "id": "mod_test_booster",
+  "name": "MOD TEST BOOST",
+  "group": "laser",
+  "rarity": "rare",
+  "stats": {
+    "LASER.damage": 1.25
+  }
+}

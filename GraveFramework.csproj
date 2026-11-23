@@ -8,6 +8,13 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
+  <!-- examples\ is its own project (GraveFrameworkExamples.csproj); keep its sources out of this DLL. -->
+  <ItemGroup>
+    <Compile Remove="examples\**" />
+    <None Remove="examples\**" />
+    <EmbeddedResource Remove="examples\**" />
+  </ItemGroup>
+
   <PropertyGroup>
     <GameDir>E:\SteamLibrary\steamapps\common\Graveyard Orbit</GameDir>
     <ManagedDir>$(GameDir)\GraveyardOrbit_Data\Managed</ManagedDir>

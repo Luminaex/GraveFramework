@@ -1,0 +1,9 @@
+{
+  "id": "mod_test_anomaly",
+  "name": "Mod Test Pulse",
+  "band": "light",
+  "blurb": "Proof that a brand-new anomaly id can trigger a real effect, not just sit inert.",
+  "chargeSecs": 20,
+  "effectSecs": 5,
+  "params": { "damage": 3, "rate": 1.5 }
+}
