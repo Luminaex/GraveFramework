@@ -27,9 +27,14 @@ This is **not a gameplay mod on its own**. It's infrastructure other mods depend
 
 ## Installing (for players)
 
-Drop `GraveFramework.dll` into `BepInEx/plugins/GraveFramework/` alongside any mod that
-depends on it (e.g. GraveBuilder). BepInEx loads it first automatically via
-`[BepInDependency]`.
+1. Install [BepInEx 5.4.x (Mono)](https://github.com/BepInEx/BepInEx/releases) into your
+   Graveyard Orbit install, if you haven't already — extract its zip into the game's install
+   folder and run the game once so it finishes setting itself up.
+2. Download the latest release zip from this repo's
+   [Releases](https://github.com/Luminaex/GraveFramework/releases) page and extract it into
+   `BepInEx/plugins/`, so you end up with `BepInEx/plugins/GraveFramework/GraveFramework.dll`.
+   BepInEx loads it first automatically via `[BepInDependency]` for any mod that depends on it
+   (e.g. GraveBuilder).
 
 ## Building from source
 
