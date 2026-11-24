@@ -20,10 +20,13 @@ This is **not a gameplay mod on its own**. It's infrastructure other mods depend
 - **A boot-time load report** — printed to `BepInEx/LogOutput.log` a couple of seconds after
   launch, and again after every hot-reload: every discovered mod, and per-type
   injected/skipped/rejected counts with reasons.
-- **Hot-reload** — hold `Ctrl` and press `F6` in-game to re-scan every mod's content folders
-  and re-apply without restarting. Any assembly's own bespoke injector also joins in
-  automatically, just by defining a static parameterless `Reload()` method — no registration
-  needed.
+- **Hot-reload** — click the "RELOAD MODS" button on the Contracts page in-game to re-scan
+  every mod's content folders and re-apply without restarting. Any assembly's own bespoke
+  injector also joins in automatically, just by defining a static parameterless `Reload()`
+  method — no registration needed. See `ReloadButtonPatch.cs`.
+- **A "MODS (n)" button on the main menu** that lists every mod `ModDiscovery` found (id, name,
+  version, description, dependencies) — players can see what's installed without opening
+  `LogOutput.log`. See `ModsMenuPatch.cs`.
 
 ## Installing (for players)
 
@@ -44,8 +47,9 @@ BepInEx and any dependency are installed automatically.
 ## Building from source
 
 Requires the .NET SDK and a local install of Graveyard Orbit (for its `Assembly-CSharp.dll`
-and BepInEx's own core DLLs, referenced via `HintPath`). Edit the `$(GameDir)` property at the
-top of `GraveFramework.csproj` to point at your own install, e.g.:
+and BepInEx's own core DLLs, referenced via `HintPath`). Edit the `$(GameDir)` property in
+`Directory.Build.props` (repo root; MSBuild picks it up automatically) to point at your own
+install, e.g.:
 
 ```xml
 <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Graveyard Orbit</GameDir>
@@ -69,6 +73,13 @@ contracts/structures). A `manifest.json` identifying your mod is optional but re
   "dependencies": []
 }
 ```
+
+## Building your own menu UI
+
+See [`UI_GUIDE.md`](UI_GUIDE.md) — how to hook a Harmony patch into a screen, the game's own
+`GraveyardOrbit.UI` helper library (`MetaUi`/`ModalKit`/`SlabFrame`/`PadNav`/`UiSfx`) every
+official menu is built from, and the full button + modal pattern, worked through using
+`ModsMenuPatch.cs` as the example.
 
 ## Examples
 

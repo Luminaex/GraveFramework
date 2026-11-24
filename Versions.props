@@ -1,0 +1,28 @@
+<Project>
+  <!--
+    THE single source of truth for every plugin's version. Bump a mod by editing its one line here.
+
+    Where it ends up:
+      - At compile time, Directory.Build.targets generates a PluginVersionInfo.Version constant per
+        project, and each Plugin.cs reads it for [BepInPlugin(..., PluginVersion)].
+      - At package/deploy time, tools/package_release.ps1 and tools/deploy_to_game.ps1 read this
+        file and stamp the version into the Thunderstore manifest.json ("version_number") and any
+        shipped runtime manifest.json.
+
+    Coupling to watch: a mod's Thunderstore dependency strings ("Luminaex-GraveFramework-X.Y.Z")
+    are generated from the depended-on mod's version HERE, at package time. So bumping
+    GraveFramework changes the minimum framework version that the next GraveBuilder package
+    declares. If GraveFramework's release breaks GraveBuilder, re-release GraveBuilder too.
+    package_release.ps1 prints the resolved dependency strings so this is never silent.
+
+    The key is the project file name (MSBuildProjectName), which matches the AssemblyName and the
+    plugin folder name for every project here. Versions are semver: MAJOR.MINOR.PATCH.
+  -->
+  <PropertyGroup>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveFramework'">1.0.0</PluginVersion>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveFrameworkExamples'">1.0.0</PluginVersion>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveBuilder'">1.0.0</PluginVersion>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveOverhaul'">1.0.0</PluginVersion>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveyardOrbitExplorer'">0.1.0</PluginVersion>
+  </PropertyGroup>
+</Project>

@@ -14,7 +14,7 @@ namespace GraveFrameworkExamples
     {
         public const string PluginGuid = "com.luminaex.graveframeworkexamples";
         public const string PluginName = "GraveFrameworkExamples";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = PluginVersionInfo.Version; // set in mods\Versions.props
 
         internal static ManualLogSource Log;
 

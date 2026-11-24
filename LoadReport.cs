@@ -12,8 +12,8 @@ namespace GraveFramework
         Rejected  // a problem: no id, cross-mod collision, failed validation, load error
     }
 
-    // Collects every content file's outcome for one load pass (boot, or one Ctrl+F6
-    // hot-reload) so Plugin can print a single per-mod summary to LogOutput.log.
+    // Collects every content file's outcome for one load pass (boot, or one RELOAD MODS
+    // click) so Plugin can print a single per-mod summary to LogOutput.log.
     internal static class LoadReport
     {
         private sealed class Entry

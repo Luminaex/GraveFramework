@@ -1,0 +1,76 @@
+<Project>
+  <!--
+    Shared build settings for every BepInEx plugin project under mods/. MSBuild imports this
+    automatically for any .csproj in this folder tree, so each project file only needs its own
+    AssemblyName, any ProjectReference, and the opt-in flags below.
+
+    Per-plugin version numbers live in Versions.props (imported at the bottom), not here.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <!-- Kept off: the assembly identity stays 0.0.0.0 as it always has. The plugin version
+         reaches code through the generated PluginVersionInfo constant instead (see
+         Directory.Build.targets). -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- This machine's Graveyard Orbit install. Edit this path for your own machine. -->
+    <GameDir>E:\SteamLibrary\steamapps\common\Graveyard Orbit</GameDir>
+    <ManagedDir>$(GameDir)\GraveyardOrbit_Data\Managed</ManagedDir>
+    <BepInExCoreDir>$(GameDir)\BepInEx\core</BepInExCoreDir>
+  </PropertyGroup>
+
+  <!-- Every plugin compiles against these. Private=false: they already exist in the game
+       install, so never copy them into a plugin's output. -->
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(ManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(ManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCoreDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(ManagedDir)\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Opt-in UI Toolkit / text references. A project sets <UseUnityUI>true</UseUnityUI> in its
+       own .csproj. That works from here because MSBuild evaluates every property (including the
+       ones in the .csproj body) before any item condition. Opt-in rather than shared by all, so
+       GraveFramework and the Explorer can't quietly pick up a UI dependency. -->
+  <ItemGroup Condition="'$(UseUnityUI)' == 'true'">
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>$(ManagedDir)\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(ManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>$(ManagedDir)\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)Versions.props" />
+</Project>

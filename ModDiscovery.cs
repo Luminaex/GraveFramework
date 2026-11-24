@@ -30,7 +30,7 @@ namespace GraveFramework
         private static List<DiscoveredMod> _current;
 
         // Cached result of the last Scan(). The catalog injectors read this so a full
-        // pass (boot, or one Ctrl+F6 hot-reload) only touches the filesystem once;
+        // pass (boot, or one RELOAD MODS click) only touches the filesystem once;
         // Plugin.ReloadAll calls Refresh() first so new or removed mod folders get noticed.
         public static IReadOnlyList<DiscoveredMod> Current => _current ?? Refresh();
 

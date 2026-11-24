@@ -1,0 +1,32 @@
+<Project>
+  <!--
+    Generates obj\...\PluginVersionInfo.g.cs for every plugin project:
+
+        namespace <RootNamespace> { internal static class PluginVersionInfo { public const string Version = "<PluginVersion>"; } }
+
+    Each Plugin.cs does `public const string PluginVersion = PluginVersionInfo.Version;`, so the
+    version in [BepInPlugin] comes from Versions.props and nowhere else. The class is internal and
+    lives in the project's own namespace, so GraveBuilder (which references GraveFramework) never
+    sees two of them.
+  -->
+
+  <Target Name="CheckPluginVersion" BeforeTargets="CoreCompile">
+    <Error Condition="'$(PluginVersion)' == ''"
+           Text="No PluginVersion for project '$(MSBuildProjectName)'. Add a line for it to mods\Versions.props." />
+  </Target>
+
+  <Target Name="GeneratePluginVersionInfo" BeforeTargets="CoreCompile" DependsOnTargets="CheckPluginVersion">
+    <PropertyGroup>
+      <_PluginVersionInfoFile>$(IntermediateOutputPath)PluginVersionInfo.g.cs</_PluginVersionInfoFile>
+    </PropertyGroup>
+    <!-- %3B = ';' (WriteLinesToFile would otherwise split the line on it). -->
+    <WriteLinesToFile File="$(_PluginVersionInfoFile)"
+                      Lines="// Generated from mods\Versions.props by Directory.Build.targets. Do not edit.;namespace $(RootNamespace) { internal static class PluginVersionInfo { public const string Version = &quot;$(PluginVersion)&quot;%3B } }"
+                      Overwrite="true"
+                      WriteOnlyWhenDifferent="true" />
+    <ItemGroup>
+      <Compile Include="$(_PluginVersionInfoFile)" />
+      <FileWrites Include="$(_PluginVersionInfoFile)" />
+    </ItemGroup>
+  </Target>
+</Project>

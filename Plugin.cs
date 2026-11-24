@@ -12,7 +12,8 @@ using UnityEngine;
 namespace GraveFramework
 {
     // Shared library plugin: mod-folder discovery, the generic content/<type>/*.json
-    // catalog injectors, the load report and the Ctrl+F6 hot-reload. Content plugins declare
+    // catalog injectors, the load report and the content hot-reload (a RELOAD button on the
+    // Contracts page, see ReloadButtonPatch.cs). Content plugins declare
     // [BepInDependency(GraveFramework.Plugin.PluginGuid)] so BepInEx loads
     // this one first.
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -20,12 +21,7 @@ namespace GraveFramework
     {
         public const string PluginGuid = "com.luminaex.graveframework";
         public const string PluginName = "GraveFramework";
-        public const string PluginVersion = "1.0.0";
-
-        // Hot-reload hotkey — re-scans every mod's content folders and re-applies without
-        // needing a game restart. Ctrl+F6 (not a bare function key) so it doesn't collide
-        // with anything the game itself binds.
-        private const KeyCode ReloadKey = KeyCode.F6;
+        public const string PluginVersion = PluginVersionInfo.Version; // set in mods\Versions.props
 
         // Boot-time LoadReport: printed once, this long after Awake, by which point the
         // catalog injectors that fire during startup have run.
@@ -52,7 +48,7 @@ namespace GraveFramework
             harmony.PatchAll();
 
             Log.LogInfo("Harmony patches applied — content injectors (structures/mods/boosters/anomalies/quotas) active.");
-            Log.LogInfo($"Hold Ctrl and press {ReloadKey} to hot-reload mod content (structures/mods/boosters/anomalies/quotas/parts) without restarting.");
+            Log.LogInfo("Press RELOAD on the Contracts page to hot-reload mod content (structures/mods/boosters/anomalies/quotas/parts) without restarting.");
         }
 
         private void Update()
@@ -73,14 +69,12 @@ namespace GraveFramework
                 _bootReportPrinted = true;
                 Log.LogInfo(LoadReport.BuildReportText());
             }
-
-            if ((In.KeyHeld(KeyCode.LeftControl) || In.KeyHeld(KeyCode.RightControl)) && In.KeyDown(ReloadKey))
-            {
-                ReloadAll();
-            }
         }
 
-        private static void ReloadAll()
+        // Triggered by the RELOAD MODS button (ReloadButtonPatch.cs) and by GraveBuilder's own
+        // EXPORT AS STRUCTURE action (so a newly exported map is already live in the Contracts
+        // list, no separate click needed) — public since both are different assemblies.
+        public static void ReloadAll()
         {
             Log.LogInfo("=== Hot-reload requested ===");
             // Pick up added/removed mod folders and start a fresh report for this pass.
@@ -107,7 +101,7 @@ namespace GraveFramework
 
         // Every type with a static parameterless Reload(), in this plugin or in any other
         // mod assembly loaded alongside it (e.g. a content plugin's own bespoke injector),
-        // takes part in Ctrl+F6 automatically: a new injector only has to define one. Found
+        // takes part in RELOAD MODS automatically: a new injector only has to define one. Found
         // once, on the first hot-reload (every plugin has loaded by then), sorted by type
         // name so the order is stable between builds.
         private static List<(string Name, MethodInfo Method)> _reloadMethods;
