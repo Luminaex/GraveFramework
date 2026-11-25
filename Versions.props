@@ -19,9 +19,9 @@
     plugin folder name for every project here. Versions are semver: MAJOR.MINOR.PATCH.
   -->
   <PropertyGroup>
-    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveFramework'">1.0.0</PluginVersion>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveFramework'">1.1.0</PluginVersion>
     <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveFrameworkExamples'">1.0.0</PluginVersion>
-    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveBuilder'">1.0.0</PluginVersion>
+    <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveBuilder'">1.1.0</PluginVersion>
     <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveOverhaul'">1.0.0</PluginVersion>
     <PluginVersion Condition="'$(MSBuildProjectName)' == 'GraveyardOrbitExplorer'">0.1.0</PluginVersion>
   </PropertyGroup>

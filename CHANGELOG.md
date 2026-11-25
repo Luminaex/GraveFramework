@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0
+
+- Moved the RELOAD MODS button off the Contracts page and into the main menu's Mods panel
+  (opened via the "MODS (n)" button), alongside the installed-mods list it already showed.
+
 ## v1.0.0
 
 Initial release.
@@ -10,5 +15,5 @@ Initial release.
   `content/anomalies/`, `content/quotas/`.
 - Cross-mod collision detection on content ids, with both mods named in the log.
 - Boot-time load report in `BepInEx/LogOutput.log`.
-- Hot-reload via the "RELOAD MODS" button on the Contracts page.
-- A "MODS (n)" button on the main menu listing every discovered mod.
+- A "MODS (n)" button on the main menu listing every discovered mod, with a "RELOAD MODS"
+  button to hot-reload content without restarting.

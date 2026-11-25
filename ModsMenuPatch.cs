@@ -9,15 +9,18 @@ namespace GraveFramework
 {
     // Adds a small "MODS (n)" button to the main menu (pinned top-right of "MenuRoot",
     // the same fixed 2560x1440 design box Frame16x9.Pin gives every other menu element, so
-    // it stays put across aspect ratios) that opens a read-only panel listing everything
-    // ModDiscovery found under BepInEx/plugins. Lets a player see what's actually installed
-    // without opening LogOutput.log. Pure UI, no gameplay effect — built the same way the
-    // game's own modals are (ModalKit/MetaUi), not a hand-rolled style.
+    // it stays put across aspect ratios) that opens a panel listing everything ModDiscovery
+    // found under BepInEx/plugins, plus a RELOAD MODS action (moved here from the Contracts
+    // page, 2026-11-24 — this is where a player actually looks to see what's installed, so
+    // it's also where re-scanning content belongs). Pure UI, no gameplay effect — built the
+    // same way the game's own modals are (ModalKit/MetaUi), not a hand-rolled style.
     [HarmonyPatch(typeof(MainMenuController), nameof(MainMenuController.Show))]
     internal static class ModsMenuPatch
     {
         private const string ButtonName = "GraveFramework_ModsBtn";
         private const string ModalName = "GraveFramework_ModsModal";
+        private const string ReloadedLabel = "RELOADED";
+        private const string ReloadLabel = "RELOAD MODS";
 
         private static void Postfix(MainMenuController __instance)
         {
@@ -64,20 +67,48 @@ namespace GraveFramework
             scroll.style.maxHeight = 560f;
             body.Add(scroll);
 
-            IReadOnlyList<DiscoveredMod> mods = ModDiscovery.Current;
-            if (mods.Count == 0)
+            // Repopulated after RELOAD MODS too, so the list and the main-menu "MODS (n)"
+            // count reflect what the re-scan actually found without having to close and
+            // reopen this panel.
+            void PopulateList()
             {
-                scroll.Add(ModalKit.Copy("No mods found in BepInEx/plugins.", 18f, centre: false));
-            }
-            else
-            {
-                foreach (DiscoveredMod mod in mods)
+                scroll.Clear();
+                IReadOnlyList<DiscoveredMod> mods = ModDiscovery.Current;
+                if (mods.Count == 0)
                 {
-                    scroll.Add(ModRow(mod, palette.accent));
+                    scroll.Add(ModalKit.Copy("No mods found in BepInEx/plugins.", 18f, centre: false));
+                }
+                else
+                {
+                    foreach (DiscoveredMod mod in mods)
+                    {
+                        scroll.Add(ModRow(mod, palette.accent));
+                    }
                 }
             }
+            PopulateList();
             MetaUi.AccentScroll(scroll, new Color(1f, 1f, 1f, 0.06f), ModalKit.Over(palette.accent, 0.45f), ModalKit.Over(palette.accent, 0.75f));
 
+            VisualElement reloadKey = null;
+            void OnReloadClicked()
+            {
+                Plugin.ReloadAll();
+                PopulateList();
+                if (root.Q<VisualElement>(ButtonName)?.Q<Button>() is Button modsButton)
+                {
+                    modsButton.text = $"MODS ({ModDiscovery.Current.Count})";
+                }
+                // Brief feedback — there's no toast/notification system to hook into here, so
+                // just flash the key's own label (ReloadButtonPatch's old recipe).
+                if (reloadKey?.Q<Label>("modal-key-label") is Label label)
+                {
+                    label.text = ReloadedLabel;
+                    reloadKey.schedule.Execute(() => label.text = ReloadLabel).ExecuteLater(1200);
+                }
+            }
+            reloadKey = ModalKit.DoorKey(ReloadLabel, OnReloadClicked, palette, primary: false);
+            reloadKey.style.marginRight = ModalKit.S(16f);
+            footer.Add(reloadKey);
             footer.Add(ModalKit.DoorKey("CLOSE", () => dim.RemoveFromHierarchy(), palette));
 
             dim.Add(card);

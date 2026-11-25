@@ -12,8 +12,8 @@ using UnityEngine;
 namespace GraveFramework
 {
     // Shared library plugin: mod-folder discovery, the generic content/<type>/*.json
-    // catalog injectors, the load report and the content hot-reload (a RELOAD button on the
-    // Contracts page, see ReloadButtonPatch.cs). Content plugins declare
+    // catalog injectors, the load report and the content hot-reload (a RELOAD MODS button on
+    // the main menu's Mods page, see ModsMenuPatch.cs). Content plugins declare
     // [BepInDependency(GraveFramework.Plugin.PluginGuid)] so BepInEx loads
     // this one first.
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -48,7 +48,7 @@ namespace GraveFramework
             harmony.PatchAll();
 
             Log.LogInfo("Harmony patches applied — content injectors (structures/mods/boosters/anomalies/quotas) active.");
-            Log.LogInfo("Press RELOAD on the Contracts page to hot-reload mod content (structures/mods/boosters/anomalies/quotas/parts) without restarting.");
+            Log.LogInfo("Press RELOAD MODS on the main menu's Mods page to hot-reload mod content (structures/mods/boosters/anomalies/quotas/parts) without restarting.");
         }
 
         private void Update()
@@ -71,7 +71,7 @@ namespace GraveFramework
             }
         }
 
-        // Triggered by the RELOAD MODS button (ReloadButtonPatch.cs) and by GraveBuilder's own
+        // Triggered by the RELOAD MODS button (ModsMenuPatch.cs) and by GraveBuilder's own
         // EXPORT AS STRUCTURE action (so a newly exported map is already live in the Contracts
         // list, no separate click needed) — public since both are different assemblies.
         public static void ReloadAll()

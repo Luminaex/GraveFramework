@@ -20,13 +20,12 @@ This is **not a gameplay mod on its own**. It's infrastructure other mods depend
 - **A boot-time load report** — printed to `BepInEx/LogOutput.log` a couple of seconds after
   launch, and again after every hot-reload: every discovered mod, and per-type
   injected/skipped/rejected counts with reasons.
-- **Hot-reload** — click the "RELOAD MODS" button on the Contracts page in-game to re-scan
-  every mod's content folders and re-apply without restarting. Any assembly's own bespoke
-  injector also joins in automatically, just by defining a static parameterless `Reload()`
-  method — no registration needed. See `ReloadButtonPatch.cs`.
 - **A "MODS (n)" button on the main menu** that lists every mod `ModDiscovery` found (id, name,
   version, description, dependencies) — players can see what's installed without opening
-  `LogOutput.log`. See `ModsMenuPatch.cs`.
+  `LogOutput.log`. Its panel also has a **RELOAD MODS** button to re-scan every mod's content
+  folders and re-apply without restarting. Any assembly's own bespoke injector also joins in
+  automatically, just by defining a static parameterless `Reload()` method — no registration
+  needed. See `ModsMenuPatch.cs`.
 
 ## Installing (for players)
 
